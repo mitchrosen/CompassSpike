@@ -1,25 +1,29 @@
-//
-//  ViewController.swift
-//  CompassSpike
-//
-//  Created by Pivotal on 2/22/17.
-//  Copyright © 2017 Pivotal. All rights reserved.
-//
-
 import UIKit
+import CoreLocation
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, CLLocationManagerDelegate {
+    
+    let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        print("entering viewDidLoad")
+        
+        // Azimuth
+        if (CLLocationManager.headingAvailable()) {
+            print("headingAvailable() is true")
+            locationManager.headingFilter = 1
+            locationManager.startUpdatingHeading()
+            locationManager.delegate = self
+        }
     }
-
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading heading: CLHeading) {
+        print (heading.magneticHeading)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
-
