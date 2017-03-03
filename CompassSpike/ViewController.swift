@@ -19,7 +19,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateHeading heading: CLHeading) {
-        print (heading.magneticHeading)
+        print (heading.trueHeading)
     }
     
     override func didReceiveMemoryWarning() {
